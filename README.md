@@ -1,0 +1,1 @@
+MySqlException: Cannot add or update a child row: a foreign key constraint fails (`helen_lehrer`.`engineermachine`, CONSTRAINT `FK_EngineerMachine_Machines_MachineId` FOREIGN KEY (`MachineId`) REFERENCES `machines` (`MachineId`) ON DELETE CASCADE)
