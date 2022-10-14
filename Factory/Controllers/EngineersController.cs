@@ -57,23 +57,23 @@ namespace Factory.Controllers
       return RedirectToAction("Index");
     }
 
-//     public ActionResult AddPatient(int id)
-//     {
-//       var thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
-//       ViewBag.PatientId = new SelectList(_db.Patients, "PatientId", "PatientName");
-//       return View(thisEngineer);
-//     }
+    public ActionResult AddMachine(int id)
+    {
+      var thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "MachineName");
+      return View(thisEngineer);
+    }
 
-//     [HttpPost]
-//     public ActionResult AddPatient(Engineer engineer, int PatientId)
-//     {
-//       if (PatientId != 0)
-//       {
-//         _db.PatientEngineer.Add(new PatientEngineer() { PatientId = PatientId, EngineerId = engineer.EngineerId });
-//         _db.SaveChanges();
-//       }
-//       return RedirectToAction("Index");
-//     }
+    [HttpPost]
+    public ActionResult AddMachine(Engineer engineer, int MachineId)
+    {
+      if (MachineId != 0)
+      {
+        _db.EngineerMachine.Add(new EngineerMachine() { MachineId = MachineId, EngineerId = engineer.EngineerId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Index");
+    }
 
 //     public ActionResult Delete(int id)
 //     {
