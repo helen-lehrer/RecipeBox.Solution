@@ -15,6 +15,6 @@ namespace Factory.Models
     public string MachineStatus { get; set; }
     [DataType(DataType.Date)]
     public DateTime InstallationDate { get; set; }
-    public virtual ICollection<MachineDoctor> JoinEntities { get; } 
+    public virtual ICollection<EngineerMachine> JoinEntities { get; } 
   }
 }
