@@ -1,0 +1,30 @@
+@* @{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Doctor
+
+<h2>Doctor Details</h2>
+<hr />
+<h3>@Html.Display("Doctor Name:"): @Html.DisplayFor(model => model.DoctorName)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This Doctor has no patients.</p>
+}
+else
+{
+  <h4>Patients: </h4>
+  <ul>
+    @foreach(var join in Model.JoinEntities)
+    {
+      <li>@Html.ActionLink($"{@join.Patient.PatientName}", "Details", "Patients", new { id = join.Patient.PatientId })</li>
+    }
+  </ul>
+}
+
+<p>@Html.ActionLink("Add a Patient", "AddPatient", new { id = Model.DoctorId })</p>
+
+<p>@Html.ActionLink("Back to all Doctors", "Index")</p>
+<p>@Html.ActionLink("Edit Doctor", "Edit", new { id = Model.DoctorId })</p>
+<p>@Html.ActionLink("Delete Doctor", "Delete", new { id = Model.DoctorId })</p> *@

@@ -1,0 +1,19 @@
+@* @{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Doctor
+
+
+<h4>Add a New Doctor</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.DoctorName, "Doctor Name: ")
+    @Html.TextBoxFor(model => model.DoctorName)
+    @Html.Label("Specialty Area: ")
+    @Html.EditorFor(model => model.Speciality)
+
+    <input type="submit" value="Add new Doctor" class="btn btn-default" />
+}
+<p>@Html.ActionLink("Show all Doctors", "Index")</p> *@

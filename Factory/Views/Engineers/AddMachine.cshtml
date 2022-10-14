@@ -1,0 +1,21 @@
+@* @{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Doctor
+
+<h2>Add a Patient</h2>
+
+<h4>Add a Patient for this Doctor: @Html.DisplayFor(model => model.DoctorName)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.DoctorId)
+
+  @Html.Label("Select Patient")
+  @Html.DropDownList("PatientId")
+
+  <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p> *@
