@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Factory.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Factory.Controllers
 {
@@ -74,13 +75,23 @@ namespace Factory.Controllers
     [HttpPost]
     public ActionResult Edit(Machine Machine, int EngineerId)
     {
+      var joinEntry = _db.EngineerMachine.ToList().First(model => model.EngineerId.ToString().Contains(EngineerId.ToString()));
+
+      Console.WriteLine(_db.EngineerMachine.ToList().First(model => model.EngineerId.ToString().Contains(EngineerId.ToString())).EngineerId);
+      
       if (EngineerId != 0)
       {
+        if (joinEntry.EngineerId.ToString() == EngineerId.ToString())
+        {
+        }
+        else
+        {
         _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = EngineerId, MachineId = Machine.MachineId });
+        }
       }
-      _db.Entry(Machine).State = EntityState.Modified;
-      _db.SaveChanges();
-      return RedirectToAction("Index");
+        _db.Entry(Machine).State = EntityState.Modified;
+        _db.SaveChanges();
+        return RedirectToAction("Index");
     }
 
     public ActionResult AddEngineer(int id)
@@ -112,15 +123,6 @@ namespace Factory.Controllers
     {
       var thisMachine = _db.Machines.FirstOrDefault(Machine => Machine.MachineId == id);
       _db.Machines.Remove(thisMachine);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
-    }
-
-    [HttpPost]
-    public ActionResult DeleteEngineer(int joinId)
-    {
-      var joinEntry = _db.EngineerMachine.FirstOrDefault(entry => entry.EngineerMachineId == joinId );
-      _db.EngineerMachine.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }

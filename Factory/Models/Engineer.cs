@@ -12,5 +12,6 @@ namespace Factory.Models
     public string EngineerName { get; set; }
     public bool EngineerStatus { get; set; }
     public virtual ICollection<EngineerMachine> JoinEntities { get; }
+
   }
 }
