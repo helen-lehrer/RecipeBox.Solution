@@ -21,30 +21,39 @@ namespace Factory.Controllers
       return View( _db.Machines.ToList().OrderBy(model => model.MachineName).ToList());
     }
 
-//     public ActionResult Create()
-//     {
-//       ViewBag.DoctorId = new SelectList( _db.Doctors, "DoctorId", "DoctorName");
-//       return View();
-//     }
+    public ActionResult Create()
+    {
+      
+     List<SelectListItem> MachineStatus = new List<SelectListItem>();
 
-//     [HttpPost]
-//     public ActionResult Create(Machine Machine, int DoctorId)
-//     {
-//       _db.Machines.Add(Machine);
-//       _db.SaveChanges();
-//       if (DoctorId != 0)
-//       {
-//         _db.MachineDoctor.Add(new MachineDoctor() { DoctorId = DoctorId, MachineId = Machine.MachineId });
-//         _db.SaveChanges();
-//       }
-//       return RedirectToAction("Index");
-//     }
+     MachineStatus.Add(new SelectListItem { Text = "Operational", Value = "Operational"});
+
+     MachineStatus.Add(new SelectListItem { Text = "Malfunctioning", Value = "Malfunctioning" });
+
+     MachineStatus.Add(new SelectListItem { Text = "In Repair Process", Value = "In Repair Process"});
+
+     ViewBag.MachineStatus = MachineStatus;
+      return View();
+    }
+
+    [HttpPost]
+    public ActionResult Create(Machine Machine, int EngineerId)
+    {
+      _db.Machines.Add(Machine);
+      _db.SaveChanges();
+      if (EngineerId != 0)
+      {
+        _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = EngineerId, MachineId = Machine.MachineId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Index");
+    }
 
 //     public ActionResult Details(int id)
 //     {
 //       var thisMachine = _db.Machines
 //           .Include(Machine => Machine.JoinEntities)
-//           .ThenInclude(join => join.Doctor)
+//           .ThenInclude(join => join.Engineer)
 //           .FirstOrDefault(Machine => Machine.MachineId == id);
 //       return View(thisMachine);
 //     }
@@ -52,16 +61,16 @@ namespace Factory.Controllers
 //     public ActionResult Edit(int id)
 //     {
 //       var thisMachine = _db.Machines.FirstOrDefault(Machine => Machine.MachineId == id);
-//       ViewBag.DoctorId = new SelectList( _db.Doctors, "DoctorId", "DoctorName");
+//       ViewBag.EngineerId = new SelectList( _db.Engineers, "EngineerId", "EngineerName");
 //       return View(thisMachine);
 //     }
 
 //     [HttpPost]
-//     public ActionResult Edit(Machine Machine, int DoctorId)
+//     public ActionResult Edit(Machine Machine, int EngineerId)
 //     {
-//       if (DoctorId != 0)
+//       if (EngineerId != 0)
 //       {
-//         _db.MachineDoctor.Add(new MachineDoctor() { DoctorId = DoctorId, MachineId = Machine.MachineId });
+//         _db.MachineEngineer.Add(new MachineEngineer() { EngineerId = EngineerId, MachineId = Machine.MachineId });
 //       }
 //       _db.Entry(Machine).State = EntityState.Modified;
 //       _db.SaveChanges();
@@ -71,16 +80,16 @@ namespace Factory.Controllers
 //     public ActionResult AddCourse(int id)
 //     {
 //       var thisMachine = _db.Machines.FirstOrDefault(Machine => Machine.MachineId == 0);
-//       ViewBag.DoctorId = new SelectList( _db.Doctors, "DoctorId", "DoctorName");
+//       ViewBag.EngineerId = new SelectList( _db.Engineers, "EngineerId", "EngineerName");
 //       return View(thisMachine);
 //     }
 
 //     [HttpPost]
-//     public ActionResult AddCourse(Machine Machine, int DoctorId)
+//     public ActionResult AddCourse(Machine Machine, int EngineerId)
 //     {
-//       if (DoctorId != 0)
+//       if (EngineerId != 0)
 //       {
-//         _db.MachineDoctor.Add(new MachineDoctor() { DoctorId = DoctorId, MachineId = Machine.MachineId });
+//         _db.MachineEngineer.Add(new MachineEngineer() { EngineerId = EngineerId, MachineId = Machine.MachineId });
 //         _db.SaveChanges();
 //       }
 //       return RedirectToAction("Index");
@@ -102,10 +111,10 @@ namespace Factory.Controllers
 //     }
 
 //     [HttpPost]
-//     public ActionResult DeleteDoctor(int joinId)
+//     public ActionResult DeleteEngineer(int joinId)
 //     {
-//       var joinEntry = _db.MachineDoctor.FirstOrDefault(entry => entry.MachineDoctorId == joinId );
-//       _db.MachineDoctor.Remove(joinEntry);
+//       var joinEntry = _db.MachineEngineer.FirstOrDefault(entry => entry.MachineEngineerId == joinId );
+//       _db.MachineEngineer.Remove(joinEntry);
 //       _db.SaveChanges();
 //       return RedirectToAction("Index");
 //     }
