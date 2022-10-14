@@ -65,7 +65,7 @@ namespace Factory.Controllers
       MachineStatus.Add(new SelectListItem { Text = "Malfunctioning", Value = "Malfunctioning" });
      MachineStatus.Add(new SelectListItem { Text = "In Repair Process", Value = "In Repair Process"});
      ViewBag.MachineStatus = MachineStatus;
-     
+
       var thisMachine = _db.Machines.FirstOrDefault(Machine => Machine.MachineId == id);
       ViewBag.EngineerId = new SelectList( _db.Engineers, "EngineerId", "EngineerName");
       return View(thisMachine);
@@ -83,23 +83,23 @@ namespace Factory.Controllers
       return RedirectToAction("Index");
     }
 
-//     public ActionResult AddCourse(int id)
-//     {
-//       var thisMachine = _db.Machines.FirstOrDefault(Machine => Machine.MachineId == 0);
-//       ViewBag.EngineerId = new SelectList( _db.Engineers, "EngineerId", "EngineerName");
-//       return View(thisMachine);
-//     }
+    public ActionResult AddEngineer(int id)
+    {
+      var thisMachine = _db.Machines.FirstOrDefault(Machine => Machine.MachineId == 0);
+      ViewBag.EngineerId = new SelectList( _db.Engineers, "EngineerId", "EngineerName");
+      return View(thisMachine);
+    }
 
-//     [HttpPost]
-//     public ActionResult AddCourse(Machine Machine, int EngineerId)
-//     {
-//       if (EngineerId != 0)
-//       {
-//         _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = EngineerId, MachineId = Machine.MachineId });
-//         _db.SaveChanges();
-//       }
-//       return RedirectToAction("Index");
-//     }
+    [HttpPost]
+    public ActionResult AddEngineer(Machine machine, int EngineerId)
+    {
+      if (EngineerId != 0)
+      {
+        _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = EngineerId, MachineId = machine.MachineId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Index");
+    }
 
 //     public ActionResult Delete(int id)
 //     {
