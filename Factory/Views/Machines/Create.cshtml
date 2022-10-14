@@ -9,9 +9,11 @@
 
 @using (Html.BeginForm())
 {
-    @Html.Display("Machine Name:")
+    @Html.Label("Machine Name:")
     @Html.TextBoxFor(model => model.MachineName)
     @Html.DropDownList("MachineStatus")
+    @Html.Label("Installation Date")
+    @Html.EditorFor(model => model.InstallationDate)
     <input type="submit" value="Add new Machine" class="btn btn-default" />
 }
 <p>@Html.ActionLink("Show all Machines", "Index")</p>

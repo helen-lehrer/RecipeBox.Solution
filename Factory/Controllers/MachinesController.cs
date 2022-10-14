@@ -56,6 +56,7 @@ namespace Factory.Controllers
           .Include(Machine => Machine.JoinEntities)
           .ThenInclude(join => join.Engineer)
           .FirstOrDefault(Machine => Machine.MachineId == id);
+      // ViewBag.JoinId = _db.EngineerMachine.FirstOrDefault(entry => entry.MachineId == id)
       return View(thisMachine);
     }
 
@@ -76,8 +77,6 @@ namespace Factory.Controllers
     public ActionResult Edit(Machine Machine, int EngineerId)
     {
       var joinEntry = _db.EngineerMachine.ToList().First(model => model.EngineerId.ToString().Contains(EngineerId.ToString()));
-
-      Console.WriteLine(_db.EngineerMachine.ToList().First(model => model.EngineerId.ToString().Contains(EngineerId.ToString())).EngineerId);
       
       if (EngineerId != 0)
       {
@@ -125,6 +124,22 @@ namespace Factory.Controllers
       _db.Machines.Remove(thisMachine);
       _db.SaveChanges();
       return RedirectToAction("Index");
+    }
+
+      public ActionResult RemoveEngineer(int id)
+    {
+      var thisMachine = _db.Machines.FirstOrDefault(Machine => Machine.MachineId == id);
+      ViewBag.EngineerId = new SelectList( _db.Engineers, "EngineerId", "EngineerName");
+      return View(thisMachine);
+    }
+
+    [HttpPost]
+    public ActionResult RemoveEngineer(Machine machine, int EngineerId)
+    {
+        var joinEntry = _db.EngineerMachine.Where(entry => entry.MachineId == machine.MachineId && entry.EngineerId == EngineerId).FirstOrDefault();
+        _db.EngineerMachine.Remove(joinEntry);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
     }
   }
 }

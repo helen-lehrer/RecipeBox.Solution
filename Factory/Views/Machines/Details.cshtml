@@ -7,6 +7,8 @@
 <h2>Machine Details</h2>
 <hr />
 <h3>@Html.Label("Machine Name:") @Html.DisplayFor(model => model.MachineName)</h3>
+<h3>@Html.Label("Machine Status:") @Html.DisplayFor(model => model.MachineStatus)</h3>
+<h3>@Html.Label("Machine Installation Date:") @Html.DisplayFor(model => model.InstallationDate)</h3>
 @if(@Model.JoinEntities.Count == 0)
 {
   <p>This Machine has no engineers.</p>
@@ -23,6 +25,7 @@ else
 }
 
 <p>@Html.ActionLink("Add An Engineer", "AddEngineer", new { id = Model.MachineId })</p>
+<p>@Html.ActionLink("Remove An Engineer", "RemoveEngineer", new { id = Model.MachineId })</p>
 
 <p>@Html.ActionLink("Back To All Machines", "Index")</p>
 <p>@Html.ActionLink("Edit Machine", "Edit", new { id = Model.MachineId })</p>
