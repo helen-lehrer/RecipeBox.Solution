@@ -1,19 +1,19 @@
-@* @{
+@{
   Layout = "_Layout";
 }
 
-@model Factory.Models.Doctor
+@model Factory.Models.Engineer
 
 
-<h4>Add a New Doctor</h4>
+<h4>Add a New Engineer</h4>
 
 @using (Html.BeginForm())
 {
-    @Html.LabelFor(model => model.DoctorName, "Doctor Name: ")
-    @Html.TextBoxFor(model => model.DoctorName)
-    @Html.Label("Specialty Area: ")
-    @Html.EditorFor(model => model.Speciality)
+    @Html.LabelFor(model => model.EngineerName, "Engineer Name: ")
+    @Html.TextBoxFor(model => model.EngineerName)
+    @Html.Label("Actively Working On Repairs")
+    @Html.EditorFor(model => model.EngineerStatus)
 
-    <input type="submit" value="Add new Doctor" class="btn btn-default" />
+    <input type="submit" value="Add New Engineer" class="btn btn-default" />
 }
-<p>@Html.ActionLink("Show all Doctors", "Index")</p> *@
+<p>@Html.ActionLink("Show all Engineers", "Index")</p>

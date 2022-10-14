@@ -21,19 +21,18 @@ namespace Factory.Controllers
       return View(_db.Engineers.ToList());
     }
 
-//         public ActionResult Create()
-//     {
-//       ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "EngineerName");
-//       return View();
-//     }
+    public ActionResult Create()
+    {
+      return View();
+    }
 
-//     [HttpPost]
-//     public ActionResult Create(Engineer doctor)
-//     {
-//       _db.Engineers.Add(doctor);
-//       _db.SaveChanges();
-//       return RedirectToAction("Index");
-//     }
+    [HttpPost]
+    public ActionResult Create(Engineer engineer)
+    {
+      _db.Engineers.Add(engineer);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
 
 //     public ActionResult Details(int id)
 //     {
