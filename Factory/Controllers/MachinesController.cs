@@ -126,7 +126,7 @@ namespace Factory.Controllers
       return RedirectToAction("Index");
     }
 
-      public ActionResult RemoveEngineer(int id)
+    public ActionResult RemoveEngineer(int id)
     {
       var thisMachine = _db.Machines.FirstOrDefault(Machine => Machine.MachineId == id);
       ViewBag.EngineerId = new SelectList( _db.Engineers, "EngineerId", "EngineerName");
