@@ -1,14 +1,14 @@
-@* @{
+@{
   Layout = "_Layout";
 }
 
-@model Factory.Models.Doctor
+@model Factory.Models.Engineer
 
-<h2>Are you sure you want to delete this Doctor?</h2>
+<h2>Are you sure you want to delete this Engineer?</h2>
 
-@Html.Display("Doctor Name"): @Html.DisplayFor(model => model.DoctorName)
+@Html.Label("Engineer Name"): @Html.DisplayFor(model => model.EngineerName)
 @using (Html.BeginForm())
 {
   <input type="submit" value="Delete" />
 }
-@Html.ActionLink("Back to List", "Index") *@
+@Html.ActionLink("Back to List", "Index")
