@@ -1,24 +1,25 @@
-@* @{
+@{
   Layout = "_Layout";
 }
 
-@model Factory.Models.Patient
+@model Factory.Models.Machine
 
 <h2>Edit</h2>
 
-<h4>Edit this patient: @Html.DisplayFor(model => model.PatientName)</h4>
+<h4>Edit this Machine: @Html.DisplayFor(model => model.MachineName)</h4>
 
 @using (Html.BeginForm())
 {
-  @Html.HiddenFor(model => model.PatientId)
+  @Html.HiddenFor(model => model.MachineId)
 
-  @Html.Display("Patient Name:")
-  @Html.EditorFor(model => model.PatientName)
-
-  @Html.Display("Appointment Date:")
-  @Html.EditorFor(model => model.AppointmentDate)
+  @Html.Display("Machine Name:")
+  @Html.TextBoxFor(model => model.MachineName)
+  @Html.DropDownList("MachineStatus")
+ 
+  @Html.Label("Select Engineer")
+  @Html.DropDownList("EngineerId")
 
   <input type="submit" value="Save" />
 }
 
-<p>@Html.ActionLink("Back to list", "Index")</p> *@
+<p>@Html.ActionLink("Back to list", "Index")</p>

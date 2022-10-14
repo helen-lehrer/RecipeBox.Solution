@@ -58,24 +58,30 @@ namespace Factory.Controllers
       return View(thisMachine);
     }
 
-//     public ActionResult Edit(int id)
-//     {
-//       var thisMachine = _db.Machines.FirstOrDefault(Machine => Machine.MachineId == id);
-//       ViewBag.EngineerId = new SelectList( _db.Engineers, "EngineerId", "EngineerName");
-//       return View(thisMachine);
-//     }
+    public ActionResult Edit(int id)
+    {
+      List<SelectListItem> MachineStatus = new List<SelectListItem>();
+     MachineStatus.Add(new SelectListItem { Text = "Operational", Value = "Operational"});
+      MachineStatus.Add(new SelectListItem { Text = "Malfunctioning", Value = "Malfunctioning" });
+     MachineStatus.Add(new SelectListItem { Text = "In Repair Process", Value = "In Repair Process"});
+     ViewBag.MachineStatus = MachineStatus;
+     
+      var thisMachine = _db.Machines.FirstOrDefault(Machine => Machine.MachineId == id);
+      ViewBag.EngineerId = new SelectList( _db.Engineers, "EngineerId", "EngineerName");
+      return View(thisMachine);
+    }
 
-//     [HttpPost]
-//     public ActionResult Edit(Machine Machine, int EngineerId)
-//     {
-//       if (EngineerId != 0)
-//       {
-//         _db.MachineEngineer.Add(new MachineEngineer() { EngineerId = EngineerId, MachineId = Machine.MachineId });
-//       }
-//       _db.Entry(Machine).State = EntityState.Modified;
-//       _db.SaveChanges();
-//       return RedirectToAction("Index");
-//     }
+    [HttpPost]
+    public ActionResult Edit(Machine Machine, int EngineerId)
+    {
+      if (EngineerId != 0)
+      {
+        _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = EngineerId, MachineId = Machine.MachineId });
+      }
+      _db.Entry(Machine).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
 
 //     public ActionResult AddCourse(int id)
 //     {
@@ -89,7 +95,7 @@ namespace Factory.Controllers
 //     {
 //       if (EngineerId != 0)
 //       {
-//         _db.MachineEngineer.Add(new MachineEngineer() { EngineerId = EngineerId, MachineId = Machine.MachineId });
+//         _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = EngineerId, MachineId = Machine.MachineId });
 //         _db.SaveChanges();
 //       }
 //       return RedirectToAction("Index");
@@ -113,8 +119,8 @@ namespace Factory.Controllers
 //     [HttpPost]
 //     public ActionResult DeleteEngineer(int joinId)
 //     {
-//       var joinEntry = _db.MachineEngineer.FirstOrDefault(entry => entry.MachineEngineerId == joinId );
-//       _db.MachineEngineer.Remove(joinEntry);
+//       var joinEntry = _db.EngineerMachine.FirstOrDefault(entry => entry.EngineerMachineId == joinId );
+//       _db.EngineerMachine.Remove(joinEntry);
 //       _db.SaveChanges();
 //       return RedirectToAction("Index");
 //     }
