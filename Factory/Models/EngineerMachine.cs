@@ -1,11 +1,11 @@
-// namespace Factory.Models
-// {
-//   public class PatientDoctor
-//   {
-//     public int PatientDoctorId { get; set; }
-//     public int PatientId { get; set; }
-//     public int DoctorId { get; set; }
-//     public virtual Doctor Doctor { get; set; }
-//     public virtual Patient Patient { get; set; }
-//   }
-// }
+namespace Factory.Models
+{
+  public class EngineerMachine
+  {
+    public int EngineerMachineId { get; set; }
+    public int MachineId { get; set; }
+    public int EngineerId { get; set; }
+    public virtual Engineer Engineer { get; set; }
+    public virtual Machine Machine { get; set; }
+  }
+}
