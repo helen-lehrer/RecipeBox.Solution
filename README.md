@@ -6,14 +6,14 @@
 
 ## Description
 
- A MVC application for a factory that keeps track of machine repairs. The user is able to add a list of engineers working at the factory and assign machines to that engineer. The user is also able to add a list of machines at the factory and assign engineers to that machine. 
+ An MVC application for a factory that keeps track of machine repairs. The user is able to add a list of engineers working at the factory and assign machines to that engineer. The user is also able to add a list of machines at the factory and assign engineers to that machine. 
  
 The Users Can:
 
 * See a list of all engineers and a list of all machines.
 * Select an engineer, see their details, and see a list of all machines that engineer is licensed to repair. They can also select a machine, see its details, and see a list of all engineers licensed to repair it.
 * Add new engineers to the system when they are hired. They can also add new machines to the system when they are installed.
-* Add new machines even if no engineers are employed. They can add new engineers even if no machines are installed
+* Add new machines even if no engineers are employed. They can add new engineers even if no machines are installed.
 * Add or remove machines that a specific engineer is licensed to repair. They can also modify this relationship from the other side, and add or remove engineers from a specific machine.
 * Navigate to a splash page that lists all engineers and machines. They can click on an individual engineer or machine to see all the engineers/machines that belong to it.
 
