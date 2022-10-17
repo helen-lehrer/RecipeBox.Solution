@@ -1,0 +1,16 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Category
+
+<h4>Add a New Category</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.CategoryName, "Category Name: ")
+  @Html.TextBoxFor(model => model.CategoryName)
+
+  <input type="submit" value="Add New Category" class="btn btn-default" />
+}
+<p>@Html.ActionLink("Show all Categories", "Index")</p>

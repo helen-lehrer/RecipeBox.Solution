@@ -1,0 +1,37 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Factory.Models;
+
+<div class="jumbotron">
+  <h1>Dr. Sillystringz's Factory</h1>
+</div>
+<div class="row index-list-all">
+  <div class="col-6 border-right border-dark" id="index-list-Categorys">
+    <h4>Categorys:</h4>
+    @if (@Model.Count == 0)
+      {
+        <h3>No Categorys have been added yet!</h3>
+      } 
+    <ul>
+      @foreach(Category Category in Model)
+      {
+        <li>@Html.ActionLink($"{Category.CategoryName}", "Details", "Categorys", new { id = Category.CategoryId })</li>
+      }
+    </ul>
+  </div>
+  <div class="col-6 border-left border-dark" id="index-list-Recipes">
+    <h4>Recipes:</h4>
+    @if (@Model.Count == 0)
+      {
+        <h3>No Recipes have been added yet!</h3>
+      } 
+    <ul>
+      @foreach(Recipe Recipe in ViewBag.Recipe)
+      {
+        <li>@Html.ActionLink($"{Recipe.RecipeName}", "Details", "Recipes",new { id = Recipe.RecipeId })</li>
+      }
+    </ul>
+  </div>
+</div>

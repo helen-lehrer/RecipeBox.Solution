@@ -1,0 +1,20 @@
+@{
+  Layout = "_Layout";
+}
+@using Factory.Models
+@model Factory.Models.Recipe
+
+<h4>Add a New Recipe</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.Label("Recipe Name:")
+    @Html.TextBoxFor(model => model.RecipeName)
+    @Html.Label("Ingredients:")
+    @Html.TextBoxFor(model => model.Ingredients)
+    @Html.Label("Instructions:")
+    @Html.TextBoxFor(model => model.Instructions)
+
+    <input type="submit" value="Add new Recipe" class="btn btn-default" />
+}
+<p>@Html.ActionLink("Show all Recipes", "Index")</p>

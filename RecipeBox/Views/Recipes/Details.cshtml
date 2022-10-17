@@ -1,0 +1,31 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Recipe
+
+<h2>Recipe Details</h2>
+<hr />
+<h3>@Html.Label("Recipe Name:") @Html.DisplayFor(model => model.RecipeName)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This Recipe has no Categories.</p>
+}
+else
+{
+  <h4>Categories: </h4>
+  <ul>
+    @foreach(var join in Model.JoinEntities)
+    {
+      <li>@Html.ActionLink($"{@join.Category.CategoryName}", "Details", "Categories", new { id = join.Category.CategoryId })</li>
+    }
+  </ul>
+}
+
+<p>@Html.ActionLink("Add An Category", "AddCategory", new { id = Model.RecipeId })</p>
+<p>@Html.ActionLink("Remove An Category", "RemoveCategory", new { id = Model.RecipeId })</p>
+
+<p>@Html.ActionLink("Back To All Recipes", "Index")</p>
+<p>@Html.ActionLink("Edit Recipe", "Edit", new { id = Model.RecipeId })</p>
+<p>@Html.ActionLink("Delete Recipe", "Delete", new { id = Model.RecipeId })</p>
