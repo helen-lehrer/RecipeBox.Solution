@@ -2,13 +2,13 @@
   Layout = "_Layout";
 }
 
-@using Factory.Models;
+@using RecipeBox.Models;
 
-<h1>Categorys</h1>
+<h1>Categories</h1>
 
 @if (@Model.Count == 0)
 {
-  <h3>No Categorys have been added yet!</h3>
+  <h3>No Categories have been added yet!</h3>
 } 
 <ul>
   @foreach (Category Category in Model)

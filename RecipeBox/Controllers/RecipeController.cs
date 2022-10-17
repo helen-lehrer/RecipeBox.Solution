@@ -1,25 +1,35 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
-using Factory.Models;
+using RecipeBox.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Security.Claims;
 
-namespace Factory.Controllers
+namespace RecipeBox.Controllers
 {
+  [Authorize]
   public class RecipesController : Controller
   {
-    private readonly FactoryContext _db;
+    private readonly RecipeBoxContext _db;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public RecipesController(FactoryContext db)
+    public RecipesController(UserManager<ApplicationUser> userManager, RecipeBoxContext db)
     {
+      _userManager = userManager;
       _db = db;
     }
 
-    public ActionResult Index()
+    public async Task<ActionResult> Index()
     {
-      return View( _db.Recipes.ToList().OrderBy(model => model.RecipeName).ToList());
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      var userRecipes = _db.Recipes.Where(entry => entry.User.Id == currentUser.Id).ToList();
+      return View(userRecipes);
     }
 
     public ActionResult Create()
@@ -28,15 +38,18 @@ namespace Factory.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Recipe Recipe, int CategoryId)
+    public async Task<ActionResult> Create(Recipe recipe, int CategoryId)
     {
-      _db.Recipes.Add(Recipe);
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      recipe.User = currentUser;
+      _db.Recipes.Add(recipe);
       _db.SaveChanges();
       if (CategoryId != 0)
       {
-        _db.CategoryRecipe.Add(new CategoryRecipe() { CategoryId = CategoryId, RecipeId = Recipe.RecipeId });
-        _db.SaveChanges();
+        _db.CategoryRecipe.Add(new CategoryRecipe() { CategoryId = CategoryId, RecipeId = recipe.RecipeId });
       }
+      _db.SaveChanges();
       return RedirectToAction("Index");
     }
 

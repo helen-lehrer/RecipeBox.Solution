@@ -2,22 +2,22 @@
   Layout = "_Layout";
 }
 
-@using Factory.Models;
+@using RecipeBox.Models;
 
 <div class="jumbotron">
-  <h1>Dr. Sillystringz's Factory</h1>
+  <h1>Dr. Bubbie's RecipeBox</h1>
 </div>
 <div class="row index-list-all">
-  <div class="col-6 border-right border-dark" id="index-list-Categorys">
-    <h4>Categorys:</h4>
+  <div class="col-6 border-right border-dark" id="index-list-Categories">
+    <h4>Categories:</h4>
     @if (@Model.Count == 0)
       {
-        <h3>No Categorys have been added yet!</h3>
+        <h3>No Categories have been added yet!</h3>
       } 
     <ul>
       @foreach(Category Category in Model)
       {
-        <li>@Html.ActionLink($"{Category.CategoryName}", "Details", "Categorys", new { id = Category.CategoryId })</li>
+        <li>@Html.ActionLink($"{Category.CategoryName}", "Details", "Categories", new { id = Category.CategoryId })</li>
       }
     </ul>
   </div>
@@ -33,5 +33,6 @@
         <li>@Html.ActionLink($"{Recipe.RecipeName}", "Details", "Recipes",new { id = Recipe.RecipeId })</li>
       }
     </ul>
+    <p>@Html.ActionLink("Create an account", "Index", "Account")</p>
   </div>
 </div>

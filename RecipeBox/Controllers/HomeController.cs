@@ -1,17 +1,17 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
-using Factory.Models;
+using RecipeBox.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Factory.Controllers
+namespace RecipeBox.Controllers
 {
     public class HomeController : Controller
     {
-      private readonly FactoryContext _db;
+      private readonly RecipeBoxContext _db;
 
-      public HomeController(FactoryContext db)
+      public HomeController(RecipeBoxContext db)
       {
         _db = db;
       }

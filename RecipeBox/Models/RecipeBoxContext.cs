@@ -1,15 +1,16 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-namespace Factory.Models
+namespace RecipeBox.Models
 {
-  public class FactoryContext : DbContext
+  public class RecipeBoxContext : IdentityDbContext<ApplicationUser>
   {
     public DbSet<Recipe> Recipes { get; set; }
     public DbSet<Category> Categories { get; set; }
 
     public DbSet<CategoryRecipe> CategoryRecipe { get; set; }
 
-    public FactoryContext(DbContextOptions options) : base(options) { }
+    public RecipeBoxContext(DbContextOptions options) : base(options) { }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

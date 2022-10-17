@@ -1,17 +1,17 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
-using Factory.Models;
+using RecipeBox.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Factory.Controllers
+namespace RecipeBox.Controllers
 {
   public class CategoriesController : Controller
   {
-    private readonly FactoryContext _db;
+    private readonly RecipeBoxContext _db;
 
-    public CategoriesController(FactoryContext db)
+    public CategoriesController(RecipeBoxContext db)
     {
       _db = db;
     }

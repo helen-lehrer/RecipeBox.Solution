@@ -1,7 +1,7 @@
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Factory
+namespace RecipeBox
 {
   public class Program
   {

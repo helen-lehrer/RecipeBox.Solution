@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Factory.Models
+namespace RecipeBox.Models
 {
   public class Category
   {
