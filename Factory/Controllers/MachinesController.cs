@@ -56,7 +56,6 @@ namespace Factory.Controllers
           .Include(Machine => Machine.JoinEntities)
           .ThenInclude(join => join.Engineer)
           .FirstOrDefault(Machine => Machine.MachineId == id);
-      // ViewBag.JoinId = _db.EngineerMachine.FirstOrDefault(entry => entry.MachineId == id)
       return View(thisMachine);
     }
 
