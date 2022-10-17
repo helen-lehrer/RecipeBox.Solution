@@ -74,20 +74,8 @@ namespace Factory.Controllers
     }
 
     [HttpPost]
-    public ActionResult Edit(Machine Machine, int EngineerId)
+    public ActionResult Edit(Machine Machine)
     {
-      var joinEntry = _db.EngineerMachine.ToList().First(model => model.EngineerId.ToString().Contains(EngineerId.ToString()));
-      
-      if (EngineerId != 0)
-      {
-        if (joinEntry.EngineerId.ToString() == EngineerId.ToString())
-        {
-        }
-        else
-        {
-        _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = EngineerId, MachineId = Machine.MachineId });
-        }
-      }
         _db.Entry(Machine).State = EntityState.Modified;
         _db.SaveChanges();
         return RedirectToAction("Index");

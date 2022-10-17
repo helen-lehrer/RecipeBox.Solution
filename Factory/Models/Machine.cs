@@ -4,8 +4,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Factory.Models
 {
-
-
   public class Machine
   {
     public Machine() 
