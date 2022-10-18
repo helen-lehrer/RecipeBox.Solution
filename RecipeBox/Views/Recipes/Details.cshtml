@@ -7,6 +7,28 @@
 <h2>Recipe Details</h2>
 <hr />
 <h3>@Html.Label("Recipe Name:") @Html.DisplayFor(model => model.RecipeName)</h3>
+<h3>@Html.Label("Recipe Rating:") @Html.DisplayFor(model => model.Rating)</h3>
+<h3>@Html.Label("Recipe Instructions:") @Html.DisplayFor(model => model.Instructions)</h3>
+
+@if(@Model.JoinEntities2.Count == 0)
+{
+  <p>You have no ingredients in this recipe</p>
+}
+else
+{
+  <h4>Ingredients</h4>
+  <ul>
+    @foreach(var join in Model.JoinEntities2)
+    {
+      <li>@join.Ingredient.IngredientName</li>
+        @using (Html.BeginForm("RemoveIngredient", "Recipes"))
+      {
+        @Html.Hidden("joinId", @join.RecipeIngredientId)
+        <input type="submit" value="Remove"/>
+      }
+    }
+  </ul>
+}
 
 @if(@Model.JoinEntities.Count == 0)
 {
@@ -23,8 +45,9 @@ else
   </ul>
 }
 
-<p>@Html.ActionLink("Add An Category", "AddCategory", new { id = Model.RecipeId })</p>
-<p>@Html.ActionLink("Remove An Category", "RemoveCategory", new { id = Model.RecipeId })</p>
+<p>@Html.ActionLink("Add A Category", "AddCategory", new { id = Model.RecipeId })</p>
+<p>@Html.ActionLink("Remove A Category", "RemoveCategory", new { id = Model.RecipeId })</p>
+<p>@Html.ActionLink("Add an Ingredient", "AddIngredient", new {id = Model.RecipeId})</p>
 
 <p>@Html.ActionLink("Back To All Recipes", "Index")</p>
 <p>@Html.ActionLink("Edit Recipe", "Edit", new { id = Model.RecipeId })</p>

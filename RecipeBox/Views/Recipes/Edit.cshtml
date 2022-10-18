@@ -14,10 +14,10 @@
 
   @Html.Label("Recipe Name:")
   @Html.TextBoxFor(model => model.RecipeName)
-  @Html.Label("Ingredients:")
-  @Html.TextBoxFor(model => model.Ingredients)
   @Html.Label("Instructions:")
   @Html.TextBoxFor(model => model.Instructions)
+  @Html.Label("Recipe Rating:")
+  @Html.DropDownList("Rating")
 
   <input type="submit" value="Save" />
 }

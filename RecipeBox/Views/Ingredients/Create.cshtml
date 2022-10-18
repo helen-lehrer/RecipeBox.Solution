@@ -1,0 +1,16 @@
+@{
+  Layout = "_Layout";
+}
+@using RecipeBox.Models
+@model RecipeBox.Models.Ingredient
+
+<h4>Add a New Ingredient</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.Label("Ingredient Name:")
+    @Html.TextBoxFor(model => model.IngredientName)
+    
+    <input type="submit" value="Add new Ingredient" class="btn btn-default" />
+}
+<p>@Html.ActionLink("Show all Ingredients", "Index")</p>

@@ -90,20 +90,13 @@ namespace RecipeBox.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult RemoveRecipe(int id)
-    {
-      var thisCategory = _db.Categories.FirstOrDefault(Category => Category.CategoryId == id);
-      ViewBag.RecipeId = new SelectList( _db.Recipes, "RecipeId", "RecipeName");
-      return View(thisCategory);
-    }
-
     [HttpPost]
-    public ActionResult RemoveRecipe(Category Category, int RecipeId)
+    public ActionResult RemoveRecipe(int joinId)
     {
-        var joinEntry = _db.CategoryRecipe.Where(entry => entry.RecipeId == RecipeId && entry.CategoryId == Category.CategoryId).FirstOrDefault();
-        _db.CategoryRecipe.Remove(joinEntry);
-        _db.SaveChanges();
-        return RedirectToAction("Index");
+      var joinEntry = _db.CategoryRecipe.FirstOrDefault(entry => entry.CategoryRecipeId == joinId);
+      _db.CategoryRecipe.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
   }
 }

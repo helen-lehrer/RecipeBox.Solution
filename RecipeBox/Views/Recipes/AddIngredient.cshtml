@@ -4,16 +4,16 @@
 
 @model RecipeBox.Models.Recipe
 
-<h2>Remove A Category</h2>
+<h2>Add An Ingredient</h2>
 
-<h4>Remove a Category for this Recipe: @Html.DisplayFor(model => model.RecipeName)</h4>
+<h4>Add a Ingredient for this Recipe: @Html.DisplayFor(model => model.RecipeName)</h4>
 
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.RecipeId)
 
-  @Html.Label("Select Category")
-  @Html.DropDownList("CategoryId")
+  @Html.Label("Select Ingredient")
+  @Html.DropDownList("IngredientId")
 
   <input type="submit" value="Save" />
 }
